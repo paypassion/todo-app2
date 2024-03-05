@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Open+Sans:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&family=Open+Sans:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Open+Sans:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200&family=Open+Sans:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&family=Open+Sans:ital@0;1&display=swap');
+
+:root {
+  --color-nav: white;
+  --color-line: lightgray;
+  --color-checkbox: rgb(240, 225, 225);
+}
+
+*{
+    margin:0;
+    padding:0;
+}
+
+html, body {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 20px;
+}
+
+input, button {
+    font-size: inherit;
+}
+
+.todo-app {
+    width: 100%;
+    max-width: 360px;
+    margin: auto;
+    margin-top: 140px;
+  
+}
+.todo-input-section
+{
+    display: flex;
+    width: 100%;
+}
+
+.todo-input {
+    padding: 10px 6px;
+    flex: 1;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid var(--color-line)
+}
+
+.todo-input-button {
+  flex:0.2;
+  font-size: 2rem;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid var(--color-line);
+  background-color: white;
+  color: var(--color-line);
+  cursor: pointer;}
+
+.todo-input-button span {
+    margin-right: -10px;
+    font-weight: 100;
+  }
+  
+.todo-input-button:hover span {
+  color: black;
+}
+
+.todo-list-section ul li  {
+    list-style-type: none;
+    font-size: 0.8rem;
+    border-bottom: 0.5px solid var(--color-line);
+    padding: 5px 0 10px 10px;
+    background: white; 
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 5px 0 5px;
+  min-height: 36px;
+  position: relative;
+}
+
+.todo-item input {
+    appearance: none;
+    display: none;
+}
+
+
+.todo-item input:checked + span {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+
+.todo-item span {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  word-break: break-all ;/* max-width: 100% ; */
+}
+
+.todo-item div {
+  display: flex;
+  align-items: flex-start;
+}
+
+.todo-item > div > i {
+  color: var(--color-line);
+}
+
+.fa-star {
+  padding: 7px 7px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.fa-star:hover {
+  color: gold;
+}
+
+.fa-trash {
+  margin-right: 5px;
+  padding: 7px 7px 7px 0px;
+  cursor: pointer;
+}
+
+.todo-item  div i:nth-child(2):hover {
+  color: black;
+}
+
+
+.star {
+  cursor: pointer;
+  right: 8.%;
+  color: var(--color-line)
+}
+
+.star, .delete-button {
+  position: absolute;
+  top: 50%;
+  font-size: 1.07rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.delete-button {
+  right: 0%;
+  color: var(--color-line); 
+  margin-left: 10px;/* 삭제 버튼 위치 조절 */
+}
+
+.delete-button:hover {
+  color: black;
+}
+
+.starred {
+  /* 별이 선택된 경우의 스타일링 */
+  color: gold !important; /* 선택된 경우 노란색으로 강제 지정 */
+}
+
+.completed.double-click span,
+.completed.double-click input {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.completed.double-click:before {
+  content: none;
+}
+
+.completed.double-click.dragging {
+  opacity: 1; /* 드래그 중인 경우 투명도를 원래대로 되돌림 */
+}
+
+
+.todo-item.dragging {
+  /* 드래그 중인 경우의 스타일링 */
+  opacity: 0.5;
+}
+
+
+
+.todo-item {
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.todo-item.dragging {
+  opacity: 0.5;
+  transform: scale(0.95); /* 드래그 중인 경우 크기를 줄임 */
+}
+
+.todo-item:not(.dragging) + .todo-item {
+  transition: transform 0.5s ease-in-out;
+}
+
+.todo-item.deleted {
+  transform: translateY(-100%); /* 삭제된 경우 위로 올라가도록 설정 */
+  margin: 0; /* 위로 올라가면서 margin이 꼬이지 않도록 설정 */
+  padding: 0; /* 위로 올라가면서 padding이 꼬이지 않도록 설정 */
+}
+
