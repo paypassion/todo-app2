@@ -73,6 +73,7 @@ console.log();
 //   실행될 코드
 // }
 
+<<<<<<< HEAD
 {
   let name = "lee";
 
@@ -323,3 +324,6 @@ const scoreTotal = scores.reduce((sum, score) => {
   return sum + score;
 }, 0);
 console.log(scoreTotal); // ==> 280
+=======
+// 1단에서 9단까지 구구단 내용을 한꺼번에 쭉 출력하는 콘솔로그 만들어오기
+>>>>>>> 5f0ea820c0209b4b59ac9fb23a9abeab48f28ec0
