@@ -22,36 +22,18 @@ undefined;
 height = 180;
 christ = true;
 
-// 저 -객체: 여러값을 가지고 있는 복합적인 데이터 타입
-// -이름
-// -성별
-// -미혼
-// -나이
+// 저
+// - 이름
+// - 성별
+// - 미혼
+// - 나이
 
-me =
-{
-  name: 'lee',
-  gender: 'male',
-  age: 43
-}
-
-// 형식 속성:값
-
-you = {
-  name: 'Kim',
-  gender: 'female',
-  age: 37,
-  address: null,
-  sum: sum
+// 객체
+me = {
+  name: "lee",
+  gender: "male",
+  age: 43,
 };
-
-console.log(you.name);
-console.log(you.age);
-console.log(you.sum(20,20));
-
-
-// 객체(오브젝트)의 프로퍼티에 접근할 때는 점을 쓴다.
-me.age
 
 // 함수
 function sum(x, y) {
@@ -59,19 +41,87 @@ function sum(x, y) {
   return result;
 }
 
+you = {
+  name: "kim",
+  gender: "female",
+  age: 37,
+  address: null,
+  sum: sum,
+};
+
+console.log(you.name);
+console.log(you.age);
+console.log(you.sum(20, 20));
+
 function hi(name) {
-  console.log("hi~"+ name);
+  console.log("hi~ " + name);
 }
 
-시온 = "lonz";
+// 이름 저장
+lastName = "lee";
 
-hi(시온);
+hi(lastName);
 
-sumResult = sum(시온,107);
+sumResult = sum(100, 200);
 
-console.log("sumResult", sumResult);
+console.log(1, sumResult);
+
+console.log();
 
 // 조건문
+// if(조건) {
+//   실행될 코드
+// }
+
+<<<<<<< HEAD
+{
+  let name = "lee";
+
+  if (name === "lee") {
+    console.log("hello");
+  } else if (name === "kim") {
+    console.log("hello");
+  } else {
+    console.log("hi");
+  }
+
+  // switch (변수) {
+  //   case 1:
+  //     console.log("1");
+  //     break;
+  // }
+}
+{
+  let name = "kim";
+
+  switch (name) {
+    case "lee":
+    case "kim":
+      console.log("hello");
+      break;
+    default:
+      console.log("hi");
+  }
+}
+// 변수 선언하는 방법
+
+var name = "park";
+
+var num = 3;
+
+function sum(a, b) {
+  let result = 0;
+  if (true) {
+    const num = 2;
+  }
+  result = (a + b) * num;
+  return result;
+}
+
+// result = sum(1, 1);
+
+// console.log(result);
+// console.log(num);
+
 // 반복문
 
-// 1단에서 9단까지 구구단 내용을 한꺼번에 쭉 출력하는 콘솔로그 만들어오기, console 객채의 log 메소드 말고 다른 함수는 뭐가 있지?
