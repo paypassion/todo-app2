@@ -7,6 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What else?</title>
+  <script defer src="main.js"></script>
 </head>
 <body>
 
@@ -18,198 +19,20 @@
       </button>
     </section>
     <section class="todo-list-section">
-      <ul id="todoList
-      
-      
-      +
-      ">
+<!--  <ul class="todo-list">
         <li class="todo-item">
           <label>
             <input type="checkbox">
             <span>공부하기</span>
           </label>
           <div>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-trash"></i>
+            <i class="fa-solid fa-star"></i> -->
+            <!-- <i class="fa-solid fa-trash"></i> -->
           </div>
         </li>
-        <li class="todo-item">
-          <label>
-            <input type="checkbox">
-            <span>천천히 조깅하기</span>
-          </label>
-          <div>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-trash"></i>
-          </div>
-        </li>
-        <li class="todo-item">
-          <label>
-            <input type="checkbox">
-            <span> 기상 후에 물마시고, 머리감고, 면도하고, 날씨 체크하고, 밥먹고, 8시 15분 전에 출발하기</span>
-          </label>
-          <div>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-trash"></i>
-          </div>
-        </li>
-        <li class="todo-item">
-          <label>
-            <input type="checkbox">
-            <span>바른 자세 앉기</span>
-          </label>
-          <div>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-trash"></i>
-          </div>
-        </li>
-        <li class="todo-item">
-          <label>
-            <input type="checkbox">
-            <span>일기 쓰기</span>
-          </label>
-          <div>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-trash"></i>
-          </div>
-        </li>
-      </ul>
+      </ul> 
     </section>
   </main>
-<<<<<<< HEAD
-
-  <!-- <script>
-    const todoInput = document.getElementById('newTodoInput');
-    const todoList = document.getElementById('todoList');
-    const addButton = document.querySelector('.todo-input-button');
-    // const currentDateElement = document.getElementById('currentDate');
-=======
->>>>>>> 5f0ea820c0209b4b59ac9fb23a9abeab48f28ec0
-
-  <script>
-//     const todoInput = document.getElementById('newTodoInput');
-//     const todoList = document.getElementById('todoList');
-//     const addButton = document.querySelector('.todo-input-button');
-//     // const currentDateElement = document.getElementById('currentDate');
-
-//     addButton.addEventListener('click', addTodo);
-//     todoInput.addEventListener('keypress', function (e) {
-//       if (e.key === 'Enter') {
-//         e.preventDefault();
-//         addTodo();
-//       }
-//     });
-
-//     function addTodo() {
-//       const todoText = todoInput.value.trim();
-//       if (todoText !== '') {
-//         const newTodoItem = document.createElement('li');
-//         newTodoItem.classList.add('todo-item');
-
-//         const checkboxLabel = document.createElement('label');
-//         const checkbox = document.createElement('input');
-//         checkbox.setAttribute('type', 'checkbox');
-//         const span = document.createElement('span');
-//         span.textContent = todoText;
-
-//         const starButton = document.createElement('span');
-//         starButton.classList.add('star');
-//         starButton.innerHTML = '<i class="fa-solid fa-star fa-xs"></i>';
-//         starButton.onclick = function () {
-//           toggleStar(starButton);
-//         };
-
-//         const deleteButton = document.createElement('span');
-//         deleteButton.classList.add('delete-button');
-//         deleteButton.innerHTML = '<i class="fas fa-trash fa-xs"></i>'; // 여기서 fa-trash-alt는 FontAwesome에서 제공하는 아이콘 클래스입니다.
-//         deleteButton.addEventListener('dblclick', function () {
-//         deleteTodoItem(newTodoItem);
-// });
-
-
-//         checkboxLabel.appendChild(checkbox);
-//         checkboxLabel.appendChild(span);
-
-//         // 더블클릭 이벤트 리스너 추가
-//         newTodoItem.addEventListener('dblclick', function () {
-//           newTodoItem.classList.toggle('completed');
-//         });
-
-//         // 드래그 이벤트 처리
-//         newTodoItem.draggable = true;
-//         newTodoItem.addEventListener('dragstart', function (e) {
-//           e.dataTransfer.setData('text/plain', '');
-//           newTodoItem.classList.add('dragging');
-//         });
-//         newTodoItem.addEventListener('dragend', function () {
-//           newTodoItem.classList.remove('dragging');
-//         });
-
-//         // 목록에 새로운 할 일 추가
-//         newTodoItem.appendChild(checkboxLabel);
-//         newTodoItem.appendChild(starButton);
-//         newTodoItem.appendChild(deleteButton);
-//         todoList.appendChild(newTodoItem);
-
-//         todoInput.value = ''; // 입력 필드 비우기
-//       }
-//     }
-
-//     function toggleStar(starElement) {
-//       starElement.classList.toggle('starred');
-//     }
-
-//     function deleteTodoItem(todoItem) {
-//       todoItem.style.transition = 'opacity 0.5s ease-in-out';
-//       todoItem.style.opacity = '0';
-
-//       setTimeout(function () {
-//         todoItem.remove();
-//       }, 500);
-//     }
-
-//     // 드래그 앤 드롭 기능 구현
-//     todoList.addEventListener('dragover', function (e) {
-//       e.preventDefault();
-//       const afterElement = getDragAfterElement(todoList, e.clientY);
-//       const draggable = document.querySelector('.dragging');
-//       if (afterElement == null) {
-//         todoList.appendChild(draggable);
-//       } else {
-//         todoList.insertBefore(draggable, afterElement);
-//       }
-//     });
-
-//     function getDragAfterElement(container, y) {
-//       const draggableElements = [...container.querySelectorAll('.todo-item:not(.dragging)')];
-
-//       return draggableElements.reduce(
-//         (closest, child) => {
-//           const box = child.getBoundingClientRect();
-//           const offset = y - box.top - box.height / 2;
-//           if (offset < 0 && offset > closest.offset) {
-//             return { offset, element: child };
-//           } else {
-//             return closest;
-//           }
-//         },
-//         { offset: Number.NEGATIVE_INFINITY }
-//       ).element;
-//     }
-
-<<<<<<< HEAD
-  <script src="main.js"></script>
-
-=======
-    //   function updateCurrentDate() {
-    //     const now = new Date();
-    //     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    //     const formattedDate = now.toLocaleDateString('en-US', options);
-    //     currentDateElement.textContent = formattedDate;
-    //   }
-
-    // updateCurrentDate(); // 초기에 한 번 호출
-  </script>
->>>>>>> 5f0ea820c0209b4b59ac9fb23a9abeab48f28ec0
+  
 </body>
 </html>
