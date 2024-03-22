@@ -8,9 +8,15 @@ const todoInputButton = document.querySelector('.todo-input-button');
 const todoListsection = document.querySelector('.todo-list-section');
 
 // 등록 버튼 클릭 시 실행되는 이벤트 핸들러 함수
-todoInputButton.addEventListener('click', function () {
+todoInputButton.addEventListener('click', function (event) {
   // 입력된 할 일 가져오기
   const todo = todoInput.value;
+  
+  // 버튼 클릭 후 입력란 초기화
+  todoInput.value = '';
+
+  // 새로고침 방지
+  event.preventDefault();
 
   //HTML 태그 만들기, 필요한 경우 클래스 부여하기
 
@@ -97,4 +103,6 @@ todoInputButton.addEventListener('click', function () {
 
   // div 아래 별 i, 휴지통 i 넣기
   completeTaglist[3].append(completeClassTagList[2], completeClassTagList[3])
+
+  
 }) 
