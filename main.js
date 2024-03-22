@@ -12,6 +12,8 @@ todoInputButton.addEventListener('click', function () {
   // 입력된 할 일 가져오기
   const todo = todoInput.value;
 
+  //HTML 태그 만들기, 필요한 경우 클래스 부여하기
+
   // HTML태그를 만들고 상수에 할당하는 함수, 그리고 그 상수의 이름을 짓는 상수.
   // HTML태그 만드는 함수
   const makeTag = function (constName, htmlTag) {
@@ -74,7 +76,6 @@ todoInputButton.addEventListener('click', function () {
   console.log(completeClassTagList);
   console.log(completeTaglist);
   
-
   // section아래 ul 달기
   todoListsection.appendChild(completeClassTagList[0]);
 
@@ -96,10 +97,4 @@ todoInputButton.addEventListener('click', function () {
 
   // div 아래 별 i, 휴지통 i 넣기
   completeTaglist[3].append(completeClassTagList[2], completeClassTagList[3])
-
-  // // 별 i에 class 부여하기
-  // completeTaglist[4].classList.add("fa-solid", "fa-star")
-
-  // // 휴지통 i에 class 부여하기
-  // completeTaglist[5].classList.add("fa-solid", "fa-trash")
 }) 
