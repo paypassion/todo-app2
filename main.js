@@ -21,15 +21,14 @@ todoInputButton.addEventListener('click', function () {
   };
 
   // 클래스가 부여된 HTML태그를 만들고 상수에 할당하는 함수. 그리고 그 상수의 이름짓는 함수.
-  // 클래스가 부여된 HTML태그 만드는 함수 
+  // 클래스가 부여된 HTML태그 만드는 함수  
   const makeClassTag = function (constName, htmlTag, classNames) {
     const element = document.createElement(htmlTag);
-    element.classList.add(classNames);
+    const classNameSplit = classNames.split(' ')
+    element.classList.add(...classNameSplit);
     window[constName] = element;
     return element;
     };
-    
-    
 
   // HTML 태그 만드는 함수에 들어갈 인자를 모아놓는 배열
   // HTML 태그 인자 배열
@@ -38,8 +37,6 @@ todoInputButton.addEventListener('click', function () {
     {constName: 'makeInput', htmlTag: 'input'}, //1
     {constName: 'makeSpan', htmlTag: 'span'},   //2
     {constName: 'makeDiv', htmlTag: 'div'},     //3
-    {constName: 'makeI1', htmlTag: 'i'},        //4
-    {constName: 'makeI2', htmlTag: 'i'}         //5
   ]
 
   // HTML 태그 클래스 만드는 함수에 들어갈 인자를 모아놓는 배열
@@ -47,6 +44,8 @@ todoInputButton.addEventListener('click', function () {
   const classTagList = [
     {constName: 'makeTodoList', htmlTag: 'ul', className:'todo-list'},       //0
     {constName: 'makeTodoItem', htmlTag: 'li', className:'todo-item'},       //1
+    {constName: 'makeI1', htmlTag: 'i', className:'fa-solid fa-star'},       //2
+    {constName: 'makeI2', htmlTag: 'i', className:'fa-solid fa-trash'}       //3 
   ]
 
   // 완성된 HTML 태그 배열 
@@ -71,10 +70,10 @@ todoInputButton.addEventListener('click', function () {
     completeClassTagList.push(result)  
   })
 
-
   // 테스트
   console.log(completeClassTagList);
   console.log(completeTaglist);
+  
 
   // section아래 ul 달기
   todoListsection.appendChild(completeClassTagList[0]);
@@ -96,11 +95,11 @@ todoInputButton.addEventListener('click', function () {
   completeTaglist[2].textContent = todo;
 
   // div 아래 별 i, 휴지통 i 넣기
-  completeTaglist[3].append(completeTaglist[4], completeTaglist[5])
+  completeTaglist[3].append(completeClassTagList[2], completeClassTagList[3])
 
-  // 별 i에 class 부여하기
-  completeTaglist[4].classList.add("fa-solid", "fa-star")
+  // // 별 i에 class 부여하기
+  // completeTaglist[4].classList.add("fa-solid", "fa-star")
 
-  // 휴지통 i에 class 부여하기
-  completeTaglist[5].classList.add("fa-solid", "fa-trash")
+  // // 휴지통 i에 class 부여하기
+  // completeTaglist[5].classList.add("fa-solid", "fa-trash")
 }) 
