@@ -9,6 +9,11 @@ const todoListsection = document.querySelector('.todo-list-section');
 
 // 등록 버튼 클릭 시 실행되는 이벤트 핸들러 함수
 todoInputButton.addEventListener('click', function (event) {
+  if(todoInput.value.length === 0) {
+    alert('Empty! Please write somthing you need')
+    return;
+  }
+
   // 입력된 할 일 가져오기
   const todo = todoInput.value;
   
@@ -83,10 +88,10 @@ todoInputButton.addEventListener('click', function (event) {
   console.log(completeTaglist);
   
   // section아래 ul 달기
-  todoListsection.appendChild(completeClassTagList[0]);
+  todoListsection.append(completeClassTagList[0]);
 
   // ul 아래 li .todo-item달기
-  completeClassTagList[0].appendChild(completeClassTagList[1]);
+  completeClassTagList[0].append(completeClassTagList[1]);
 
   // li .todo-item 아래 label, div 달기
 
@@ -106,3 +111,4 @@ todoInputButton.addEventListener('click', function (event) {
 
   
 }) 
+

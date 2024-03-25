@@ -66,3 +66,10 @@
 //   })
 // }
 
+// const inputSelector = document.querySelector('input')
+// const newTodoText = inputSelector.value;
+
+// const newTodoSpan= document.createElement('span')
+// newTodoSpan.textContent = inputSelector.value;
+
+// inputSelector.appendChild(newTodoSpan)
