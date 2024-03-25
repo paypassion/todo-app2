@@ -9,8 +9,10 @@ const todoListsection = document.querySelector('.todo-list-section');
 
 // 등록 버튼 클릭 시 실행되는 이벤트 핸들러 함수
 todoInputButton.addEventListener('click', function (event) {
-  if(todoInput.value.length === 0) {
-    alert('Empty! Please write somthing you need')
+  const emptyValidator = str => str.trim().length;
+
+  if(emptyValidator(todoInput.value)=== 0) {
+    alert('Empty! Please write somthing you need :D')
     return;
   }
 

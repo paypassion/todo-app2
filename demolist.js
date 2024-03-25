@@ -73,3 +73,8 @@
 // newTodoSpan.textContent = inputSelector.value;
 
 // inputSelector.appendChild(newTodoSpan)
+
+// const greeting = '         Hello world!         '
+// console.log(greeting);
+
+// console.log(greeting.trim());
