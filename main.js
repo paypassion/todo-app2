@@ -76,6 +76,24 @@ todoInputButton.addEventListener('click', function (event) {
   // span에 할 일 텍스트 가져오기
   span.textContent = todoInput.value
 
+  // 클릭으로 별 색상 바꾸기
+
+  let isClicked = false;
+  
+  i1.addEventListener('click', function () {
+    if (!isClicked) {
+      i1.style.color = 'gold' 
+    } else {
+      i1.style.color = 'lightgray'
+    }
+    isClicked = !isClicked
+});
+
+  // 쓰레기통을 누르면 해당 li 삭제
+  i2.addEventListener('click', function () {
+    ul.removeChild(li)
+  })
+
   // 버튼 클릭 후 입력란 초기화
   todoInput.value = '';
 

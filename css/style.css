@@ -8,6 +8,7 @@
   --color-nav: white;
   --color-line: lightgray;
   --color-checkbox: rgb(240, 225, 225);
+  --color-hover: black;
 }
 
 *{
@@ -61,7 +62,7 @@ input, button {
   }
   
 .todo-input-button:hover span {
-  color: black;
+  color: var(--color-hover);
 }
 
 .todo-list-section ul li  {
@@ -110,7 +111,7 @@ input, button {
 }
 
 .fa-star {
-  padding: 7px 7px;
+  padding: 7px 3px 7px 7px;
   margin-right: 5px;
   cursor: pointer;
 }
@@ -121,82 +122,10 @@ input, button {
 
 .fa-trash {
   margin-right: 5px;
-  padding: 7px 7px 7px 0px;
+  padding: 7px 7px 7px 3px;
   cursor: pointer;
 }
 
-.todo-item  div i:nth-child(2):hover {
-  color: black;
+.fa-trash:hover {
+  color: var(--color-hover); 
 }
-
-
-.star {
-  cursor: pointer;
-  right: 8.5%;
-  color: var(--color-line)
-}
-
-.star, .delete-button {
-  position: absolute;
-  top: 50%;
-  font-size: 1.07rem;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
-
-.delete-button {
-  right: 0%;
-  color: var(--color-line); 
-  margin-left: 10px;/* 삭제 버튼 위치 조절 */
-}
-
-.delete-button:hover {
-  color: black;
-}
-
-.starred {
-  /* 별이 선택된 경우의 스타일링 */
-  color: gold !important; /* 선택된 경우 노란색으로 강제 지정 */
-}
-
-.completed.double-click span,
-.completed.double-click input {
-  text-decoration: line-through;
-  opacity: 0.5;
-}
-
-.completed.double-click:before {
-  content: none;
-}
-
-.completed.double-click.dragging {
-  opacity: 1; /* 드래그 중인 경우 투명도를 원래대로 되돌림 */
-}
-
-
-.todo-item.dragging {
-  /* 드래그 중인 경우의 스타일링 */
-  opacity: 0.5;
-}
-
-
-
-.todo-item {
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-}
-
-.todo-item.dragging {
-  opacity: 0.5;
-  transform: scale(0.95); /* 드래그 중인 경우 크기를 줄임 */
-}
-
-.todo-item:not(.dragging) + .todo-item {
-  transition: transform 0.5s ease-in-out;
-}
-
-.todo-item.deleted {
-  transform: translateY(-100%); /* 삭제된 경우 위로 올라가도록 설정 */
-  margin: 0; /* 위로 올라가면서 margin이 꼬이지 않도록 설정 */
-  padding: 0; /* 위로 올라가면서 padding이 꼬이지 않도록 설정 */
-}
-
