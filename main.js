@@ -3,79 +3,44 @@
 
 //필요한 요소들을 DOM에서 가져오기 
 
-const todoInput = document.querySelector('.todo-input');
-const todoInputButton = document.querySelector('.todo-input-button');
-const TodoSectionSelector = document.querySelector('.todo-list-section');
+// document.querySelector 줄여쓰기
+const $ = document.querySelector.bind(document);
+
+// document.createElement 줄여쓰기
+const createElement = document.createElement.bind(document);
+
+// class부여하기
+const addClass = function (element, className) {
+  const classNameSplit = className.split(' ');
+  element.classList.add(...classNameSplit)
+  return element;
+}
+
+const todoInput = $('.todo-input');
+const todoInputButton = $('.todo-input-button');
+const TodoSectionSelector = $('.todo-list-section');
 
 // ul 만들기, 클래스 부여하기
-const ul = document.createElement('ul')
+const ul = createElement('ul')
 
 // ul 클래스 부여하기
-ul.classList.add('todo-list')
+addClass(ul, 'todo-list')
 
 // section에 ul 달기
 TodoSectionSelector.appendChild(ul)
 
 /////////////////////////태그 메이커 ///////////////////////////////
 
-// HTML태그 만드는 함수
-const makeTag = function (htmlTag) {
-  const element = document.createElement(htmlTag);
-  return element; 
-  };
-  
-// makeTag로 map할 배열
-const beforeTag = [
-  {htmlTag: 'label'}, //0
-  {htmlTag: 'input'}, //1
-  {htmlTag: 'span'},  //2
-  {htmlTag: 'div'},   //3
-]
 
-// beforeTag요소에 makeTag를 map으로 적용
-const afterTag = beforeTag.map(function (obj) {
-  return makeTag(obj.htmlTag);
-});
-
-
-// 클래스가 부여된 HTML태그 만드는 함수  
-const makeClassTag = function (htmlTag, classNames) {
-  const element = document.createElement(htmlTag);
-  const classNameSplit = classNames.split(' ')
-  element.classList.add(...classNameSplit);
-  return element;
-};
-
-
-// makeClassTag로 map할 배열
-const beforeClassTag =[  
-  {htmlTag: 'li', className:'todo-item'},     
-  {htmlTag: 'i', className:'fa-solid fa-star'},     
-  {htmlTag: 'i', className:'fa-solid fa-trash'}  
-  ]
-
-// beforeClassTag에 makeClassTag를 map으로 적용
-const afterClassTag = beforeClassTag.map (
-  function (obj) {
-  return makeClassTag(obj.htmlTag, obj.className);
-})
 
 // append를 하는 함수
-const appendIt = function (parent, ...child) {
+const appendElements = function (parent, ...child) {
   const element = parent.append(...child);
   return element;
 } 
 
-// afterTag 배열 해체
-const [label, input, span, div] = afterTag;
-
-// afterClassTag 배열 해체
-const [li, i1, i2] = afterClassTag;
-
-
 
 ////////////콜백 함수 안에 append 함수 안에 들어갈 기타 함수들 //////////////
-
 
 // 할일 입력란 공백 검사 함수
 function validateTodo() {
@@ -92,6 +57,7 @@ function setInputAttributes(inputElement) {
   inputElement.setAttribute('type', 'checkbox')
 };
 
+// span안에 원하는 text를 넣는 함수 
 function setSpanText(spanElement, text) {
   spanElement.textContent = text;
 };
@@ -100,25 +66,16 @@ function setSpanText(spanElement, text) {
 function changeStarColor(i1) {
   let isClicked = false;
   i1.addEventListener('click', function () {
-      if (!isClicked) {
-        i1.style.color = 'gold' 
-      } else {
-        i1.style.color = 'lightgray'
-      }
+      i1.style.color = isClicked ? 'lightgray' : 'gold' 
       isClicked = !isClicked;
   });
 };
 
 // 쓰레기통을 누르면 해당 li를 삭제하는 함수
-function deleteListItem(ulElement, liElement) {
-  i2.addEventListener('click', function () {
+function deleteListItem(iElement, ulElement, liElement) {
+  iElement.addEventListener('click', function () {
     ulElement.removeChild(liElement);
   });
-};
-
-// 버튼 클릭 후 입력란을 초기화하는 함수
-function resetInputField(inputElement) {
-  inputElement.value = ''
 };
 
 //////////////이벤트 핸들러 함수에 쓰일 콜백 함수 ////////////////////////
@@ -133,41 +90,58 @@ function handleClick(event) {
     return;
   } // 
 
-  toBeAppended();
-  handleTodoInput();
-  changeStarColor(i1);
-  deleteListItem(ul, li);
+  toBeAppended()
+  todoInput.value = ''
 };
 
 // 이벤트 핸들러 함수에서 콜백될 함수 안에 들어있는데
 // append함수를 담은 함수
 function toBeAppended() {
+  const li = createElement('li');
+  const label = createElement('label');
+  const div = createElement('div');
+  const input = createElement('input');
+  const span = createElement('span')
+  const i1 = createElement('i')
+  const i2 = createElement('i')
+
+  addClass(li, 'todo-item')
+  addClass(i1, 'fa-solid fa-star')
+  addClass(i2, 'fa-solid fa-trash')
+
   //ul의 자식으로 li를 추가
-  appendIt(ul, li);
+  appendElements(ul, li);
 
   //li의 자식으로 label과 div를 추가
-  appendIt(li, label, div);
+  appendElements(li, label, div);
 
   //label의 자식으로 input과 span 추가
-  appendIt(label, input, span);
+  appendElements(label, input, span);
 
   //div의 자식으로 i1과 i2를 추가
-  appendIt(div, i1, i2);
-}
+  appendElements(div, i1, i2);
 
-// input과 관련된 것을 조작하는 함수를 담은 함수
-
-function handleTodoInput() {
-  // 
+  // input에 check박스 부여
   setInputAttributes(input);
-  setSpanText(span, todoInput.value);
-  resetInputField(todoInput)
-};
 
+  // span에 새로운 할 일 내용 가져오기
+  setSpanText(span, todoInput.value);
+
+  // 클릭으로 별 색깔 바꾸기
+  changeStarColor(i1)
+
+  // 쓰레기통 누르면 해당 li 삭제
+  deleteListItem(i2, ul, li)
+}
 
 // 등록 버튼 클릭 시 실행되는 이벤트 핸들러 함수
 todoInputButton.addEventListener('click', handleClick) 
 
 
-
-
+// // 할 일들의 배열
+// // const data = [
+// //   // {
+// //   //   done: true,
+// //   //   content: '우유마시기'
+// //   // }
+// // ]
