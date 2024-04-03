@@ -29,9 +29,7 @@ addClass(ul, 'todo-list')
 // section에 ul 달기
 TodoSectionSelector.appendChild(ul)
 
-/////////////////////////태그 메이커 ///////////////////////////////
-
-
+/////////////////////////태그 메이커 ////////////////////////////
 
 // append를 하는 함수
 const appendElements = function (parent, ...child) {
@@ -78,6 +76,95 @@ function deleteListItem(iElement, ulElement, liElement) {
   });
 };
 
+
+// 할 일들의 배열
+const data = [
+  //   {
+  //     done: true,
+  //     content: '우유마시기'
+  //   }
+  ]
+
+//data에 할일내용과 체크박스 디폴트 상태를 전달하는 함수
+function createTodoItem() {
+  const todoItem = {
+    done: false,
+    content: todoInput.value.trim()
+  }
+  data.push(todoItem)
+  renderList()
+  todoInput.value=''; // 입력란 초기화
+};
+
+function renderList() {
+  // 매번 새로 할 일을 추가할 때 마다 데이터에 있는 모든 할일을 렌더링 하므로 렌더링 전에 모든 할일 리스트를 삭제합니다.
+  const items = document.querySelectorAll('ul > li')
+
+  items.forEach(function (item) {
+    item.remove();
+  });
+
+  // 데이터를 순회하며 모든 할 일을 렌더링 합니다.
+  data.forEach(function (todo, i ) {
+    console.log("todo", todo);
+    // 할일 리스트 덩어리
+    const li = createElement('li');
+    const label = createElement('label');
+    const div = createElement('div');
+    const checkbox = createElement('input');
+    const span = createElement('span')
+    const i1 = createElement('i')
+    const i2 = createElement('i')
+    
+    // 클래스 부여
+    addClass(li, 'todo-item')
+    addClass(i1, 'fa-solid fa-star')
+    addClass(i2, 'fa-solid fa-trash')
+  
+    //ul의 자식으로 li를 추가
+    appendElements(ul, li);
+  
+    //li의 자식으로 label과 div를 추가
+    appendElements(li, label, div);
+  
+    //label의 자식으로 input과 span 추가
+    appendElements(label, checkbox, span);
+  
+    //div의 자식으로 i1과 i2를 추가
+    appendElements(div, i1, i2);
+  
+    // input에 check박스 부여
+    setInputAttributes(checkbox);
+  
+    // span에 새로운 할 일 값 가져오기
+    setSpanText(span, todo.content);
+  
+    // 클릭으로 별 색깔 바꾸기
+    changeStarColor(i1)
+  
+    // 할 일 삭제 버튼
+    deleteListItem(i2, ul, li)
+
+    // 체크 박스 상태 전달
+    checkbox.checked = todo.done
+    checkbox.addEventListener("click", clickCheck)
+  })
+
+};
+
+// 체크박스 클릭 핸들러
+function clickCheck(event) {
+  const itemWrap = event.target.parentElement;
+  const span = itemWrap.querySelector("span")
+  const content = span.textContent;
+
+  // 체크 상태를 데이터에 반영
+  data.filter(function (item) {
+    if (item.content == content) return true;
+
+    return false
+  });[0].done = event.target.checked; 
+}
 //////////////이벤트 핸들러 함수에 쓰일 콜백 함수 ////////////////////////
 
 //이벤트 핸들러 함수 내에서 사용할 콜백함수 정의
@@ -91,6 +178,8 @@ function handleClick(event) {
   } // 
 
   toBeAppended()
+  createTodoItem()
+  renderList()
   todoInput.value = ''
 };
 
@@ -100,7 +189,7 @@ function toBeAppended() {
   const li = createElement('li');
   const label = createElement('label');
   const div = createElement('div');
-  const input = createElement('input');
+  const checkbox = createElement('input');
   const span = createElement('span')
   const i1 = createElement('i')
   const i2 = createElement('i')
@@ -116,13 +205,13 @@ function toBeAppended() {
   appendElements(li, label, div);
 
   //label의 자식으로 input과 span 추가
-  appendElements(label, input, span);
+  appendElements(label, checkbox, span);
 
   //div의 자식으로 i1과 i2를 추가
   appendElements(div, i1, i2);
 
   // input에 check박스 부여
-  setInputAttributes(input);
+  setInputAttributes(checkbox);
 
   // span에 새로운 할 일 내용 가져오기
   setSpanText(span, todoInput.value);
@@ -132,16 +221,18 @@ function toBeAppended() {
 
   // 쓰레기통 누르면 해당 li 삭제
   deleteListItem(i2, ul, li)
+
+
 }
 
 // 등록 버튼 클릭 시 실행되는 이벤트 핸들러 함수
 todoInputButton.addEventListener('click', handleClick) 
 
+// 데이터에 넣고 렌더링 하려면, 넣은 다음에 렌더링 된 걸 다 지우고,
+// 가지고 온 데이터를 중심으로 렌더링할 구조를 다시 짜야 한다. 
 
-// // 할 일들의 배열
-// // const data = [
-// //   // {
-// //   //   done: true,
-// //   //   content: '우유마시기'
-// //   // }
-// // ]
+// createTodoItem에 텍스트 값이랑, 체크박스 값을 저장하고
+// 그것을 data로 넘긴다.
+// data에 들어있는 내용으로 다시 할 일 리스트 구조를 짜서 렌더링 한다.
+
+

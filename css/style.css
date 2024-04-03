@@ -30,12 +30,18 @@ input, button {
     max-width: 360px;
     margin: auto;
     margin-top: 140px;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
   
 }
+
 .todo-input-section
 {
-    display: flex;
-    width: 100%;
+    margin-bottom: 10px;
+    border-bottom: 2px solid var(--color-line);
 }
 
 .todo-input {
@@ -43,21 +49,20 @@ input, button {
     flex: 1;
     border: none;
     outline: none;
-    border-bottom: 2px solid var(--color-line)
 }
 
 .todo-input-button {
-  flex:0.2;
+  flex-shrink: 0;
+  margin-right: 15px;
   font-size: 2rem;
   outline: none;
   border: none;
-  border-bottom: 2px solid var(--color-line);
   background-color: white;
   color: var(--color-line);
   cursor: pointer;}
 
 .todo-input-button span {
-    margin-right: -10px;
+    margin-right: 0px;
     font-weight: 100;
   }
   
