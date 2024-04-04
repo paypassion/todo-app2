@@ -45,10 +45,11 @@ function validateTodo() {
 
 
 // 할 일들의 배열
-const data = [
+let data = [
   //   {
   //     done: true,
   //     content: '우유마시기'
+  //     starred: false
   //   }
   ]
 
@@ -73,12 +74,14 @@ function createTodoItem() {
   }
   data.push(todoItem)
   renderList()
+  saveToLocalStorage()
   todoInput.value=''; // 입력란 초기화
 };
 
 function toggleStar(index) {
   data[index].starred = !data[index].starred;
   renderList()
+  saveToLocalStorage()
 };
 
 function renderList(tasks = data) {
@@ -128,10 +131,12 @@ function renderList(tasks = data) {
 function deleteListItem(index) {
   data.splice(index, 1); // 데이터에서 삭제
   renderList()
+  saveToLocalStorage()
 };
 
 function toggleDone(index) {
   data[index].done = !data[index].done // 체크 상태 토글
+  saveToLocalStorage()
 };
 
 // 등록 버튼 클릭 시 실행되는 이벤트 핸들러 함수
@@ -193,3 +198,27 @@ function renderFilteredTasks(completed) {
   // 필터링된 목록을 기반으로 렌더링
   renderList(filteredTasks);
 };
+
+// 할 일들을 로컬 스토리지에 저장하는 함수
+function saveToLocalStorage() {
+  const dataString = JSON.stringify(data); // 객체를 문자열로 변환
+  localStorage.setItem('todos', dataString); // 로컬 스토리지에 저장
+};
+
+// 로컬 스토리지에서 할 일들을 불러오는 함수
+function loadFromLocalStorage() {
+  const dataString = localStorage.getItem('todos'); // 로컬 스토리지에서 데이터를 문자열로 가져온다
+  if (dataString) {
+    data = JSON.parse(dataString); // 문자열을 객체로 변환
+  } else {
+    data = []; // 로컬 스토리지에 아무것도 없으면 빈 배열로 초기화
+  }
+  renderList();
+};
+
+// 페이지 로드시 로컬 스토리지에서 할 일 목록을 불러옵니다.
+document.addEventListener('DOMContentLoaded', loadFromLocalStorage)
+
+// 할 일이 추가, 수정, 삭제될 때마다 로컬 스토리지를 업데이트 합니다.
+// 이를 위해, createTodoItem, deleteListItem, toggleDone, toggleStar 함수내부에서
+// saveToLocalStorage를 호출합니다.
